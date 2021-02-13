@@ -1,0 +1,31 @@
+.about {
+    position: relative;
+
+    &__image {
+        flex: 0 0 100%;
+        max-width: 100%;
+        padding-left: 15px;
+        padding-right: 15px;
+        display: flex;
+    }
+
+    &__content {
+        flex: 0 0 100%;
+        max-width: 100%;
+        padding-left: 15px;
+        padding-right: 15px;
+        margin-top: 1rem;
+    }
+
+    &__cta {
+        flex: 0 0 100%;
+        max-width: 100%;
+        padding-left: 15px;
+        padding-right: 15px;
+        margin-top: 1rem;
+    }
+
+    &__text {
+        text-align: left;
+    }
+}
