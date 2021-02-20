@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { DangerButton } from '../components/Button'
 import { Input } from '../components/Input'
 
-export const Payments = ({data}) => {
+const Payments = ({data}) => {
     const [id, setId] = useState(data?.SID)
     const [heading, setHeading] = useState(data?.value?.header[0])
     const [accountHeader, setAccountHeader] = useState(data?.value?.accountheader[0])
@@ -87,3 +87,5 @@ export const Payments = ({data}) => {
         </section>
     )
 }
+
+export default Payments

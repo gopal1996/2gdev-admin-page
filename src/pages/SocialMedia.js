@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { DangerButton } from '../components/Button'
 import { Input } from '../components/Input'
 
-export const SocialMedia = ({data}) => {
+const SocialMedia = ({data}) => {
     const [id, setId] = useState(data?.SID)
     const [facebook, setFacebook] = useState(data?.value?.facebook[0])
     const [instagram, setInstagram] = useState(data?.value?.instagram[0])
@@ -63,3 +63,5 @@ export const SocialMedia = ({data}) => {
         </section>
     )
 }
+
+export default SocialMedia;

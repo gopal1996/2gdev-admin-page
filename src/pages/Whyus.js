@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { DangerButton } from '../components/Button'
 import { ImageUpload, Input, List, TextArea } from '../components/Input'
 
-export const Whyus = ({data}) => {
+const Whyus = ({data}) => {
     const [id, setId] = useState(data?.SID)
     const [heading, setHeading] = useState(data?.value?.header[0])
     const [file, setFile] = useState("")
@@ -113,3 +113,5 @@ export const Whyus = ({data}) => {
         </section>
     )
 }
+
+export default Whyus

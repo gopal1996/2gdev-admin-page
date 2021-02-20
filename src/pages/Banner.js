@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { DangerButton } from '../components/Button'
 import { ImageUpload, Input, TextArea } from '../components/Input'
 
-export const Banner = ({data}) => {
+const Banner = ({data}) => {
     const [id, setId] = useState(data?.SID)
     const [heading, setHeading] = useState(data?.value?.header[0])
     const [description, setDescription] = useState(data?.value?.paragraph[0])
@@ -64,3 +64,5 @@ export const Banner = ({data}) => {
         </section>
     )
 }
+
+export default Banner

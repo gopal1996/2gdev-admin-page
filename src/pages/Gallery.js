@@ -32,13 +32,14 @@ const Gallery = ({data}) => {
                 }
             })
             .then(data => {
+                console.log("Uploader",data)
                 setFilePath(data.desc)
                 setFile("")
 
                 const sectionData = {
                     "Subheading": JSON.stringify([subheading]),
                     "header": JSON.stringify([heading]),
-                    "image": JSON.stringify(data.desc)
+                    "images": JSON.stringify(data.desc)
                 }
 
                 fetch(`http://python.alphas9.com/update/all/3/${id}/`, {
@@ -53,7 +54,7 @@ const Gallery = ({data}) => {
             const sectionData = {
                 "Subheading": JSON.stringify([subheading]),
                 "header": JSON.stringify([heading]),
-                "image": JSON.stringify(filepath)
+                "images": JSON.stringify(filepath)
             }
 
             fetch(`http://python.alphas9.com/update/all/3/${id}/`, {
