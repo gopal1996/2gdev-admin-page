@@ -2,14 +2,31 @@ import React, {useState} from 'react'
 import { DangerButton } from '../components/Button'
 import { ImageUpload, Input, TextArea } from '../components/Input'
 
-export const Banner = () => {
-    const [heading, setHeading] = useState("")
-    const [description, setDescription] = useState("")
-    const [name, setName] = useState("")
-    const [role, setRole] = useState("")
+export const Banner = ({data}) => {
+    const [id, setId] = useState(data?.SID)
+    const [heading, setHeading] = useState(data?.value?.header[0])
+    const [description, setDescription] = useState(data?.value?.paragraph[0])
+    const [name, setName] = useState(data?.value?.foundername[0])
+    const [role, setRole] = useState(data?.value?.founderrole[0])
+    const [file, setFile] = useState("")
+    const [filepath, setFilePath] = useState(data?.value?.image[0])
+    const [founderFile, setFounderFile] = useState("")
+    const [founderfilepath, setFounderFilePath] = useState(data?.value?.founderimg[0])
 
     const saveHandler = () => {
-        console.log(heading)
+        const imageData = new FormData();
+        imageData.append("file", file)
+
+        const FounderData = new FormData();
+        FounderData.append("file", founderFile)
+
+        const postHeaders = new Headers()
+        postHeaders.append("Content-Type","application/json")
+
+        if(file) {
+            setFilePath();
+            setFounderFilePath();
+        }
     }
 
     return (
@@ -20,8 +37,10 @@ export const Banner = () => {
                         <div className="about__text">
                             <p>Banner Image</p>
                             <div className="about__image">
-                                <ImageUpload />
+                                <ImageUpload file={file} setFile={setFile} filepath={filepath} />
                             </div>
+                            <p>ID:</p>
+                            <Input disabled value={id} setValue={setId} />
                             <p>Heading:</p>
                             <Input value={heading} setValue={setHeading} />
                             <p>Description:</p>
@@ -32,7 +51,7 @@ export const Banner = () => {
                             <Input value={role} setValue={setRole} />
                             <p>Profile</p>
                             <div className="about__image">
-                                <ImageUpload />
+                                <ImageUpload file={founderFile} setFile={setFounderFile} filepath={founderfilepath} />
                             </div>
                         </div>
                     </div>

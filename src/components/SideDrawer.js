@@ -1,10 +1,10 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 // Icons
-import {FiFilm, FiAirplay, FiKey, FiMapPin} from 'react-icons/fi'
-import {AiOutlineCamera, AiOutlineTeam, AiOutlineHistory, AiOutlinePhone} from 'react-icons/ai'
+import {FiFilm, FiAirplay, FiKey} from 'react-icons/fi'
+import {AiOutlineCamera, AiOutlineTeam} from 'react-icons/ai'
 import {TiSocialFacebook} from 'react-icons/ti'
-import {MdEvent} from 'react-icons/md'
+// import {MdEvent} from 'react-icons/md'
 
 const SideDrawer = ({show}) => {
     return (
@@ -35,6 +35,9 @@ const SideDrawer = ({show}) => {
                         <li className="side-drawer__list side-drawer__list">
                             <Link to="/features" className="side-drawer__link"><FiKey className="side-drawer__svg" />Features</Link>
                         </li>
+                        <li className="side-drawer__list side-drawer__list">
+                            <Link to="/services" className="side-drawer__link"><FiKey className="side-drawer__svg" />Services</Link>
+                        </li>
                         <li className="side-drawer__list">
                             <Link to="/gallery" className="side-drawer__link"><AiOutlineCamera className="side-drawer__svg" />Gallery</Link>
                         </li>
@@ -42,22 +45,22 @@ const SideDrawer = ({show}) => {
                             <Link to="/payments" className="side-drawer__link"><AiOutlineCamera className="side-drawer__svg" />Payments</Link>
                         </li>
                         <li className="side-drawer__list">
-                            <Link to="/teams" className="side-drawer__link"><AiOutlineTeam className="side-drawer__svg" />Teams</Link>
+                            <Link to="/videos" className="side-drawer__link"><AiOutlineTeam className="side-drawer__svg" />Videos</Link>
                         </li>
                         <li className="side-drawer__list">
-                            <Link to="/testinomials" className="side-drawer__link"><FiAirplay className="side-drawer__svg" />Testinomials</Link>
+                            <Link to="/contact" className="side-drawer__link"><FiAirplay className="side-drawer__svg" />Contact</Link>
                         </li>
                         {/* <li className="side-drawer__list">
                             <Link to="/authentication" className="side-drawer__link"><FiKey className="side-drawer__svg" />Authentication</Link>
                         </li> */}
-                        <span className="side-drawer__title">App</span>
+                        {/* <span className="side-drawer__title">App</span>
                         <li className="side-drawer__list">
                             <Link to="/maps" className="side-drawer__link"><FiMapPin className="side-drawer__svg" />Maps</Link>
-                        </li>
+                        </li> */}
                         {/* <li className="side-drawer__list">
                             <Link to="/mail" className="side-drawer__link"><FiMail className="side-drawer__svg" />Mail</Link>
                         </li> */}
-                        <li className="side-drawer__list">
+                        {/* <li className="side-drawer__list">
                             <Link to="/events" className="side-drawer__link"><MdEvent className="side-drawer__svg" />Events</Link>
                         </li>
                         <span className="side-drawer__title">Help</span>
@@ -66,7 +69,7 @@ const SideDrawer = ({show}) => {
                         </li>
                         <li className="side-drawer__list">
                             <Link to="/contact" className="side-drawer__link"><AiOutlinePhone className="side-drawer__svg" />Contact Us</Link>
-                        </li>
+                        </li> */}
                     </ul>
                 </div>
             </div>

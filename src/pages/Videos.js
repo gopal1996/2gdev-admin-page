@@ -2,25 +2,18 @@ import React, {useState} from 'react'
 import { DangerButton } from '../components/Button'
 import { Input } from '../components/Input'
 
-export const SocialMedia = ({data}) => {
+const Videos = ({data}) => {
     const [id, setId] = useState(data?.SID)
-    const [facebook, setFacebook] = useState(data?.value?.facebook[0])
-    const [instagram, setInstagram] = useState(data?.value?.instagram[0])
-    const [twitter, setTwitter] = useState(data?.value?.twitter[0])
-    const [linkedin, setLinkedin] = useState(data?.value?.linkdin[0])
-    const [youtube, setYoutube] = useState(data?.value?.youtube[0])
+    const [heading, setHeading] = useState(data?.value?.header[0])
+    const [video, setVideo] = useState(data?.value?.videos[0])
 
     const saveHandler = () => {
-    
         const postHeaders = new Headers()
         postHeaders.append("Content-Type","application/json")
 
         const sectionData = {
-            "facebook": JSON.stringify([facebook]),
-            "instagram": JSON.stringify([instagram]),
-            "linkdin": JSON.stringify([linkedin]),
-            "twitter": JSON.stringify([twitter]),
-            "youtube": JSON.stringify([youtube])
+            "heading": JSON.stringify([heading]),
+            "video": JSON.stringify([video]),
         }
 
         fetch(`http://python.alphas9.com/update/all/3/${id}/`, {
@@ -31,7 +24,6 @@ export const SocialMedia = ({data}) => {
         })
         .then(res => res.json())
         .then(data => console.log("Else",data))
-        
     }
 
     return (
@@ -42,16 +34,10 @@ export const SocialMedia = ({data}) => {
                         <div className="about__text">
                             <p>ID:</p>
                             <Input disabled value={id} setValue={setId} />
-                            <p>Facebook:</p>
-                            <Input value={facebook} setValue={setFacebook} />
-                            <p>Instagram:</p>
-                            <Input value={instagram} setValue={setInstagram} />
-                            <p>Twitter:</p>
-                            <Input value={twitter} setValue={setTwitter} />
-                            <p>Linkedin:</p>
-                            <Input value={linkedin} setValue={setLinkedin} />
-                            <p>Youtube:</p>
-                            <Input value={youtube} setValue={setYoutube} />
+                            <p>Heading:</p>
+                            <Input value={heading} setValue={setHeading} />
+                            <p>Video Url:</p>
+                            <Input value={video} setValue={setVideo} />
                         </div>
                     </div>
                     <div className="about__cta">
@@ -63,3 +49,5 @@ export const SocialMedia = ({data}) => {
         </section>
     )
 }
+
+export default Videos
