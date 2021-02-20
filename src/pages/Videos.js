@@ -13,7 +13,7 @@ const Videos = ({data}) => {
 
         const sectionData = {
             "heading": JSON.stringify([heading]),
-            "video": JSON.stringify([video]),
+            "videos": JSON.stringify([video]),
         }
 
         fetch(`http://python.alphas9.com/update/all/3/${id}/`, {
