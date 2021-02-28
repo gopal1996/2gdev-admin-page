@@ -4,7 +4,10 @@ import {AiOutlinePlus} from 'react-icons/ai'
 export const TextArea = ({value, setValue}) => {
     return (
         <>
-            <textarea className="form" name="" id="" cols="40" rows="20" value={value} onChange={event => setValue(event.target.value)}></textarea>
+            <textarea className="form" name="" id="" cols="40" rows="20" value={value} onChange={event => {
+                console.log(event.target.value)
+                setValue(event.target.value)
+            }}></textarea>
         </>
     )
 }
@@ -30,6 +33,17 @@ export const List = ({value, setValue, list, addList, removeItem}) => {
             <input type="text" placeholder="Add Item" className="form form--input" name="list" value={value} onChange={evt => setValue(evt.target.value)} />
             <button className="btn btn--primary" onClick={addList} style={{marginTop: "2rem"}}>Add</button>
         </div>
+    )
+}
+
+export const Dropdown = ({dropDownList, value, setValue}) => {
+
+    return (
+        <select className="dropdown" value={value} onChange={setValue} >
+            {
+                dropDownList.map((list, idx) => <option key={idx} value={list.ID}>{list.name}</option>)
+            }
+        </select>
     )
 }
 

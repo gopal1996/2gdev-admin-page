@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import { DangerButton } from '../components/Button'
 import { ImageUpload, Input, List, TextArea } from '../components/Input'
+import { BASE_URL } from '../data/env'
 
 const Whyus = ({data}) => {
     const [id, setId] = useState(data?.SID)
@@ -18,9 +19,10 @@ const Whyus = ({data}) => {
 
         const postHeaders = new Headers()
         postHeaders.append("Content-Type","application/json")
+        postHeaders.append("Authorization",localStorage.getItem("token"))
 
         if(file) {
-            fetch("http://python.alphas9.com/uploader/alphas9", {
+            fetch(`${BASE_URL}/uploader/alphas9`, {
                 method: "POST",
                 body: imageData,
                 redirect: "follow"
@@ -31,10 +33,10 @@ const Whyus = ({data}) => {
                 }
             })
             .then(data => {
-                setFilePath(`http://python.alphas9.com/${data.desc}`)
+                setFilePath(`${BASE_URL}/${data.desc}`)
                 setFile("")
 
-                let tempFilePath = `http://python.alphas9.com/${data.desc}`
+                let tempFilePath = `${BASE_URL}/${data.desc}`
 
                 const sectionData = {
                     "Paragraph": JSON.stringify([description]),
@@ -43,7 +45,7 @@ const Whyus = ({data}) => {
                     "list": JSON.stringify(list)
                 }
 
-                fetch(`http://python.alphas9.com/update/all/3/${id}/`, {
+                fetch(`${BASE_URL}/update/all/${window.location.pathname.split("/")[1]}/${id}/`, {
                     headers: postHeaders,
                     method: "POST",
                     body: JSON.stringify(sectionData),
@@ -59,7 +61,7 @@ const Whyus = ({data}) => {
                 "list": JSON.stringify(list)
             }
 
-            fetch(`http://python.alphas9.com/update/all/3/${id}/`, {
+            fetch(`${BASE_URL}/update/all/${window.location.pathname.split("/")[1]}/${id}/`, {
                 method: 'POST',
                 headers: postHeaders,
                 body: JSON.stringify(sectionData),

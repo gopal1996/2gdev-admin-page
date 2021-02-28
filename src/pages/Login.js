@@ -1,30 +1,69 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
+import { Redirect } from 'react-router-dom'
+import { BASE_URL } from "../data/env";
 
-export default class Login extends Component {
-    render() {
-        return (
-            <div className="login-outer">
-                <div className="login-inner">
-            <form>
+export default function Login() {
+    const [email, setEmail] = useState("gokulamudan@gmail.com")
+    const [password, setPassword] = useState("HELLOworld$2021")
+    const [isAuthenticate, setAuthenticate] = useState(false)
 
-                <h3>Log in</h3>
+    const submitHandler = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
 
-                <div className="form-group">
-                    <label>Email</label>
-                    <input type="email" className="form-control" placeholder="Enter email" />
-                </div>
-
-                <div className="form-group">
-                    <label>Password</label>
-                    <input type="password" className="form-control" placeholder="Enter password" />
-                </div>
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
 
 
-                <button type="submit" className="btn btn--primary">Sign in</button>
+        var raw = JSON.stringify({
+            "email": email,
+            "password": password
+        });
 
-            </form>
-            </div>
-         </div>
-        );
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+
+        fetch(`${BASE_URL}/auth/token`, requestOptions)
+        .then(response => {
+            if(!response.ok){
+                throw new Error('Login Failed')
+            }
+            return response.json()
+        })
+        .then(data => {
+            let tok = data.token
+            localStorage.setItem("token", tok)
+            setAuthenticate(true)
+        })
+        .catch(err => setAuthenticate(false))
     }
+
+    return isAuthenticate ? <Redirect to="/company" />: (
+        <div className="login-outer">
+            <div className="login-inner">
+                <form onSubmit={submitHandler}>
+
+                    <h3>Log in</h3>
+
+                    <div className="form-group">
+                        <label>Email</label>
+                        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="form-control" placeholder="Enter email" />
+                    </div>
+
+                    <div className="form-group">
+                        <label>Password</label>
+                        <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" className="form-control" placeholder="Enter password" />
+                    </div>
+
+
+                    <button type="submit" className="btn btn--primary">Sign in</button>
+
+                </form>
+            </div>
+        </div>
+    );
 }

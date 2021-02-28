@@ -1,21 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+// import App from './App';
 import './styles/main.scss'
-import { Route, BrowserRouter, Switch } from 'react-router-dom';
-import Login from './pages/Login';
-import ProtectedRoute from './components/ProtectedRoute';
+// import { Route, BrowserRouter, Switch } from 'react-router-dom';
+// import Login from './pages/Login';
+// import ProtectedRoute from './components/ProtectedRoute';
+// import Company from './components/Company';
+import Bootstrap from './Bootstrap'
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Switch>
-        <Route exact={true} path="/" component={Login} />
-        <ProtectedRoute path="/admin" component={App} />
-        {/* <ProtectedRoute path="*" component={App} /> */}
-        
-      </Switch>
-    </BrowserRouter>
+    <Bootstrap />
   </React.StrictMode>,
   document.getElementById('root')
 );

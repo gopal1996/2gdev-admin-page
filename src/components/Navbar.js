@@ -10,7 +10,7 @@ const Navbar = ({show, drawerClickHandler}) => {
                 <div className="navbar__logo">
                     <div className="navbar__brand">
                         <Link to="/" className="navbar__link">
-                            {show ? '2G Developers': '2G'}
+                            {show ? 'Alphas9': 'Alphas9'}
                         </Link>
                         { 
                         show 

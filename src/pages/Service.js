@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import { DangerButton } from '../components/Button'
 import { ImageList, Input } from '../components/Input'
+import { BASE_URL } from '../data/env'
 
 const Services = ({data}) => {
     const [id, setId] = useState(data?.SID)
@@ -26,13 +27,14 @@ const Services = ({data}) => {
     const saveHandler = () => {
         const postHeaders = new Headers()
         postHeaders.append("Content-Type","application/json")
+        postHeaders.append("Authorization",localStorage.getItem("token"))
 
         const sectionData = {
             "header": JSON.stringify([heading]),
             "icon": JSON.stringify(list),
         }
 
-        fetch(`http://python.alphas9.com/update/all/3/${id}/`, {
+        fetch(`${BASE_URL}/update/all/${window.location.pathname.split("/")[1]}/${id}/`, {
             method: 'POST',
             headers: postHeaders,
             body: JSON.stringify(sectionData),

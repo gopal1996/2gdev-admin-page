@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import { DangerButton } from '../components/Button'
 import { Input, MultipleImageUpload } from '../components/Input'
+import { BASE_URL } from '../data/env'
 
 const Gallery = ({data}) => {
     const [id, setId] = useState(data?.SID)
@@ -19,9 +20,10 @@ const Gallery = ({data}) => {
 
         const postHeaders = new Headers()
         postHeaders.append("Content-Type","application/json")
+        postHeaders.append("Authorization",localStorage.getItem("token"))
 
         if(file) {
-            fetch("http://python.alphas9.com/uploader_multi/alphas9", {
+            fetch(`${BASE_URL}/uploader_multi/alphas9`, {
                 method: "POST",
                 body: imageData,
                 redirect: "follow"
@@ -42,7 +44,7 @@ const Gallery = ({data}) => {
                     "images": JSON.stringify(data.desc)
                 }
 
-                fetch(`http://python.alphas9.com/update/all/3/${id}/`, {
+                fetch(`${BASE_URL}/update/all/${window.location.pathname.split("/")[1]}/${id}/`, {
                     headers: postHeaders,
                     method: "POST",
                     body: JSON.stringify(sectionData),
@@ -57,7 +59,7 @@ const Gallery = ({data}) => {
                 "images": JSON.stringify(filepath)
             }
 
-            fetch(`http://python.alphas9.com/update/all/3/${id}/`, {
+            fetch(`${BASE_URL}/update/all/3/${id}/`, {
                 method: 'POST',
                 headers: postHeaders,
                 body: JSON.stringify(sectionData),

@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import { DangerButton } from '../components/Button'
 import { Input } from '../components/Input'
+import { BASE_URL } from '../data/env'
 
 const Payments = ({data}) => {
     const [id, setId] = useState(data?.SID)
@@ -17,6 +18,7 @@ const Payments = ({data}) => {
     const saveHandler = () => {
         const postHeaders = new Headers()
         postHeaders.append("Content-Type","application/json")
+        postHeaders.append("Authorization",localStorage.getItem("token"))
 
         let accountData = {
             Bankname: bankName,
@@ -38,7 +40,7 @@ const Payments = ({data}) => {
             "upi": JSON.stringify([upiData]),
         }
 
-        fetch(`http://python.alphas9.com/update/all/3/${id}/`, {
+        fetch(`${BASE_URL}/update/all/${window.location.pathname.split("/")[1]}/${id}/`, {
             method: 'POST',
             headers: postHeaders,
             body: JSON.stringify(sectionData),

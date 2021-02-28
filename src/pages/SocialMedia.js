@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import { DangerButton } from '../components/Button'
 import { Input } from '../components/Input'
+import { BASE_URL } from '../data/env'
 
 const SocialMedia = ({data}) => {
     const [id, setId] = useState(data?.SID)
@@ -14,6 +15,7 @@ const SocialMedia = ({data}) => {
     
         const postHeaders = new Headers()
         postHeaders.append("Content-Type","application/json")
+        postHeaders.append("Authorization",localStorage.getItem("token"))
 
         const sectionData = {
             "facebook": JSON.stringify([facebook]),
@@ -23,7 +25,7 @@ const SocialMedia = ({data}) => {
             "youtube": JSON.stringify([youtube])
         }
 
-        fetch(`http://python.alphas9.com/update/all/3/${id}/`, {
+        fetch(`${BASE_URL}/update/all/${window.location.pathname.split("/")[1]}/${id}/`, {
             method: 'POST',
             headers: postHeaders,
             body: JSON.stringify(sectionData),
